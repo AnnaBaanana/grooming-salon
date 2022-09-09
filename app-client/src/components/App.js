@@ -42,6 +42,16 @@ function handleFormDataChange(e) {
     setAppointments(afterDeleteAppointments)
   }
 
+  function editAppointment(data) {
+    console.log('I am being edited', data)
+    setFormData({
+      on_date: data.on_date,
+      at_time: data.at_time,
+      pet_name: data.pet_name,
+      owner_name: data.owner_name
+  })
+  }
+
   return (
     <div className="App">
       <NavBar />
@@ -50,7 +60,7 @@ function handleFormDataChange(e) {
       <button>New Appointment</button>
       <AppointmentDetails formData={formData} handleFormDataChange={handleFormDataChange} handleFormSubmit={handleFormSubmit} />
       <h3>Upcoming Appointments</h3>
-      <AppointmentList appointments={appointments} deleteAppointment={deleteAppointment}/>
+      <AppointmentList appointments={appointments} deleteAppointment={deleteAppointment} editAppointment={editAppointment}/>
       <br></br>
       <h3>Pets</h3>
       <PetList pets={pets}/>

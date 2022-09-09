@@ -1,7 +1,8 @@
-function Appointment({appointment, deleteAppointment}) {
+function Appointment({appointment, deleteAppointment, editAppointment}) {
 
-    function editAppointment() {
+    function handleEdit() {
         console.log('I was clicked')
+        editAppointment(appointment)
     }
 
     function handleDelete() {
@@ -17,7 +18,7 @@ function Appointment({appointment, deleteAppointment}) {
             <strong> {appointment.at_time} </strong>
             <strong> {appointment.name} </strong>
             <strong> {appointment.breed} </strong>
-            <button onClick={editAppointment} appointment={appointment}>Edit</button>
+            <button onClick={handleEdit} appointment={appointment}>Edit</button>
             <button onClick={handleDelete}>Delete</button>
         </li>
     )

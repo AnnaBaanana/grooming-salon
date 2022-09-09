@@ -1,6 +1,6 @@
 import Appointment from './Appointment'
 
-function AppointmentList({appointments, deleteAppointment}) {
+function AppointmentList({appointments, deleteAppointment, editAppointment}) {
 
     return(
         <ul>
@@ -8,6 +8,7 @@ function AppointmentList({appointments, deleteAppointment}) {
                 <Appointment
                     key={appointment.id} appointment={appointment}
                     deleteAppointment={deleteAppointment}
+                    editAppointment={editAppointment}
                 />
             ))}
         </ul>
