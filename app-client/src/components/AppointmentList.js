@@ -1,13 +1,13 @@
 import Appointment from './Appointment'
 
-function AppointmentList({appointments}) {
+function AppointmentList({appointments, deleteAppointment}) {
+
     return(
         <ul>
             {appointments.map(appointment => (
                 <Appointment
-                    key={appointment.id}
-                    on_date={appointment.on_date}
-                    at_time={appointment.at_date}
+                    key={appointment.id} appointment={appointment}
+                    deleteAppointment={deleteAppointment}
                 />
             ))}
         </ul>
