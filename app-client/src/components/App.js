@@ -9,6 +9,18 @@ function App() {
 
   const [pets, setPets] = useState([])
   const [appointments, setAppointments] = useState([])
+  const [formData, setFormData] = useState({
+    on_date: '',
+    at_time: '',
+    pet_name: '',
+    owner_name: ''
+});
+
+function handleFormDataChange(e) {
+    const newFormData = {...formData, [e.target.name]: e.target.value}
+    console.log(newFormData)
+    setFormData(newFormData)
+}
 
   useEffect(() => {
     fetch("http://localhost:9292/pets").then(res => res.json()).
@@ -36,7 +48,7 @@ function App() {
       <h1>Pet Mama Grooming Salon</h1>
       <br></br>
       <button>New Appointment</button>
-      <AppointmentDetails handleFormSubmit={handleFormSubmit}/>
+      <AppointmentDetails formData={formData} handleFormDataChange={handleFormDataChange} handleFormSubmit={handleFormSubmit} />
       <h3>Upcoming Appointments</h3>
       <AppointmentList appointments={appointments} deleteAppointment={deleteAppointment}/>
       <br></br>

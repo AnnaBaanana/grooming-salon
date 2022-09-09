@@ -1,18 +1,6 @@
 import {useState} from 'react';
 
-function AppointmentDetails({appointment, handleFormSubmit}) {
-    const [formData, setFormData] = useState({
-        on_date: '',
-        at_time: '',
-        pet_name: '',
-        owner_name: ''
-    });
-
-    function handleFormDataChange(e) {
-        const newFormData = {...formData, [e.target.name]: e.target.value}
-        console.log(newFormData)
-        setFormData(newFormData)
-    }
+function AppointmentDetails({appointment, formData, handleFormDataChange, handleFormSubmit}) {
 
     function handleSubmit(e) {
         e.preventDefault()
