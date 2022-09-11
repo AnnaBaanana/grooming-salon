@@ -15,12 +15,13 @@ function App() {
     pet_name: '',
     owner_name: ''
 });
+  const [editForm, setEditForm] = useState(null);
 
-function handleFormDataChange(e) {
+  function handleFormDataChange(e) {
     const newFormData = {...formData, [e.target.name]: e.target.value}
     console.log(newFormData)
     setFormData(newFormData)
-}
+  }
 
   useEffect(() => {
     fetch("http://localhost:9292/pets").then(res => res.json()).
@@ -44,6 +45,7 @@ function handleFormDataChange(e) {
 
   function editAppointment(data) {
     console.log('I am being edited', data)
+    setEditForm(data.id)
     setFormData({
       on_date: data.on_date,
       at_time: data.at_time,
@@ -58,7 +60,7 @@ function handleFormDataChange(e) {
       <h1>Pet Mama Grooming Salon</h1>
       <br></br>
       <button>New Appointment</button>
-      <AppointmentDetails formData={formData} handleFormDataChange={handleFormDataChange} handleFormSubmit={handleFormSubmit} />
+      <AppointmentDetails editForm={editForm} formData={formData} handleFormDataChange={handleFormDataChange} handleFormSubmit={handleFormSubmit} />
       <h3>Upcoming Appointments</h3>
       <AppointmentList appointments={appointments} deleteAppointment={deleteAppointment} editAppointment={editAppointment}/>
       <br></br>

@@ -1,7 +1,6 @@
 function Appointment({appointment, deleteAppointment, editAppointment}) {
 
     function handleEdit() {
-        console.log('I was clicked')
         editAppointment(appointment)
     }
 
