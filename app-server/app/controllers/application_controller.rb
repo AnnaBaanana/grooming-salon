@@ -28,7 +28,7 @@ class ApplicationController < Sinatra::Base
 
   #need to add other data points
   patch "/appointments/:id" do
-    #binding.pry
+    binding.pry
     appointment = Appointment.find(params[:id])
     appointment.update(
       on_date: params[:on_date],
