@@ -9,12 +9,13 @@ function App() {
 
   const [pets, setPets] = useState([])
   const [appointments, setAppointments] = useState([])
-  const [formData, setFormData] = useState({
+  const defaultForm = {
     on_date: '',
     at_time: '',
     pet_name: '',
     owner_name: ''
-});
+}
+  const [formData, setFormData] = useState(defaultForm);
   const [editForm, setEditForm] = useState(null);
 
   function handleFormDataChange(e) {
@@ -36,6 +37,7 @@ function App() {
   function handleFormSubmit(formData) {
     const newAppointments = [...appointments, formData]
     setAppointments(newAppointments)
+    setFormData(defaultForm)
   }
 
   function deleteAppointment(data) {
