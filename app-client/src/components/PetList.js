@@ -8,8 +8,7 @@ function PetList({pets}) {
                 {pets.map((pet)=> (
                     <Pet 
                     key={pet.id}
-                    name={pet.name}
-                    image_url={pet.image_url}
+                    pet={pet}
                     />
                 ))}
             </ul>

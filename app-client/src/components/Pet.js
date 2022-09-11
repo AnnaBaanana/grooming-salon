@@ -1,12 +1,12 @@
 import React from 'react';
 
-function Pet({name, image_url}) {
+function Pet({pet}) {
     return (
         <li>
-            <strong>{name}</strong>
+            <strong>{pet.name}</strong>
             <img
-            src={image_url}
-            alt={name}
+            src={pet.image_url}
+            alt={pet.name}
             />
             <button>Create Appointment</button>
         </li>
