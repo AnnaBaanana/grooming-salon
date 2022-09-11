@@ -1,14 +1,20 @@
 import {useState} from 'react';
 
-function AppointmentDetails({appointment, formData, handleFormDataChange, handleFormSubmit}) {
+function AppointmentDetails({formData, handleFormDataChange, handleFormSubmit}) {
 
     function handleSubmit(e) {
         e.preventDefault()
+        //added appointment validation logic
+        if (formData.on_date == null || formData.at_time == null ) {
         fetch('http://localhost:9292/appointments', {
         method: "POST",
         headers: {"Content-type": "Application/json"},
         body: JSON.stringify(formData)}).then(res => res.json()).then(data => 
             handleFormSubmit(data))}
+        else {
+            alert("Appointment Date and Time cannot be blank")
+        }
+    }
 
     return(
         <form onSubmit={handleSubmit}>
