@@ -1,5 +1,7 @@
 function Appointment({appointment, deleteAppointment, editAppointment}) {
 
+    //console.log(appointment.pet)
+
     function handleEdit() {
         editAppointment(appointment)
     }
@@ -14,9 +16,9 @@ function Appointment({appointment, deleteAppointment, editAppointment}) {
     return(
         <li>
             <strong>{appointment.on_date} </strong>
-            <strong> {appointment.at_time} </strong>
-            <strong> {appointment.name} </strong>
-            <strong> {appointment.breed} </strong>
+            <strong>At: {appointment.at_time} </strong>
+            <strong>Pet Name: {appointment.pet.name} </strong>
+            <strong> {appointment.pet.breed} </strong>
             <button onClick={handleEdit} appointment={appointment}>Edit</button>
             <button onClick={handleDelete}>Delete</button>
         </li>
