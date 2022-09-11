@@ -1,11 +1,9 @@
-import {useState} from 'react';
 
-function AppointmentDetails({formData, handleFormDataChange, handleFormSubmit}) {
+function AppointmentDetails({editForm, formData, handleFormDataChange, handleFormSubmit}) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        //added appointment validation logic
-        if (formData.on_date == null || formData.at_time == null ) {
+        if (formData.on_date != null && formData.at_time != null ) {
         fetch('http://localhost:9292/appointments', {
         method: "POST",
         headers: {"Content-type": "Application/json"},
