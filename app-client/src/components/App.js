@@ -59,7 +59,7 @@ function App() {
       on_date: data.on_date,
       at_time: data.at_time,
       pet_name: data.pet.name,
-      type: data.pet.pet_type,
+      pet_type: data.pet.pet_type,
       breed: data.pet.breed,
       owner_first_name: data.owner_first_name,
       owner_last_name: data.owner_last_name,

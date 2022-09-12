@@ -56,20 +56,20 @@ function AppointmentDetails({editForm, formData, handleFormDataChange, handleFor
                 name='pet_type' 
                 id='pet_type' 
                 value={formData.pet_type} 
-                placeholder='pet type'
+                placeholder='cat or dog'
                 onChange={e => handleFormDataChange(e)}>
-                    <option value="select">Select Type</option>
-                    <option value="dog">dog</option>
-                    <option value="cat">cat</option>
+                    <option value='select'>select</option>
+                    <option value='cat'>cat</option>
+                    <option value='dog'>dog</option>
             </select>
-            <input 
+            <input
                 type='text' 
                 name='breed' 
                 id='breed' 
                 value={formData.breed} 
                 placeholder='pet breed'
-                onChange={e => handleFormDataChange(e)}  
-            />
+                onChange={e => handleFormDataChange(e)}
+            /> 
             <br></br>
             <input 
                 type='text' 
