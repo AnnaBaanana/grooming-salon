@@ -1,7 +1,5 @@
 function Appointment({appointment, deleteAppointment, editAppointment}) {
 
-    //console.log(appointment.pet)
-
     function handleEdit() {
         editAppointment(appointment)
     }

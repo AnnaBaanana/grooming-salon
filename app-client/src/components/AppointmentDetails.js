@@ -3,7 +3,7 @@ function AppointmentDetails({editForm, formData, handleFormDataChange, handleFor
 
     function handleSubmit(e) {
         e.preventDefault()
-        if (formData.on_date != null && formData.at_time != null ) {
+        if (formData.on_date !== null && formData.at_time !== null ) {
             if (editForm>0) {
                 //if editForm is not NULL -- form is being edited -- do patch
                 fetch(`http://localhost:9292/appointments/${editForm}`, {
@@ -58,9 +58,9 @@ function AppointmentDetails({editForm, formData, handleFormDataChange, handleFor
                 value={formData.pet_type} 
                 placeholder='pet type'
                 onChange={e => handleFormDataChange(e)}>
-                    <option value="">Select Type</option>
-                    <option value="dog">Dog</option>
-                    <option value="cat">Cat</option>
+                    <option value="select">Select Type</option>
+                    <option value="dog">dog</option>
+                    <option value="cat">cat</option>
             </select>
             <input 
                 type='text' 

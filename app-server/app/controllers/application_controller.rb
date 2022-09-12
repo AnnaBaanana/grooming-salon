@@ -14,7 +14,7 @@ class ApplicationController < Sinatra::Base
 
   #need to add other data points
   post "/appointments" do
-    binding.pry
+    #binding.pry
     appointment = Appointment.create(
       on_date: params[:on_date],
       at_time: params[:at_time]
@@ -23,22 +23,22 @@ class ApplicationController < Sinatra::Base
     owner = Owner.create(first_name: params[:owner_first_name], last_name: params[:owner_last_name], phone: params[:owner_phone])
     pet.appointments << appointment
     owner.appointments << appointment
-    appointment.to_json
+    appointment.to_json(only: [:id, :on_date, :at_time], include: {pet: { only: [:name, :pet_type, :breed] }})
   end
 
   #need to add other data points
   patch "/appointments/:id" do
-    binding.pry
+    #binding.pry
     appointment = Appointment.find(params[:id])
     appointment.update(
       on_date: params[:on_date],
       at_time: params[:at_time]
     )
     pet = Pet.find(appointment.pet_id)
-    pet.update(name: params[:pet_name])
+    pet.update(name: params[:pet_name], breed: params[:breed], pet_type: params[:pet_type])
     owner = Owner.find(appointment.owner_id)
-    owner.update(first_name: params[:owner_name])
-    appointment.to_json
+    owner.update(first_name: params[:owner_first_name], last_name: params[:owner_last_name], phone: params[:owner_phone])
+    appointment.to_json(only: [:id, :on_date, :at_time], include: {pet: { only: [:name, :pet_type, :breed] }})
   end
 
   #working well

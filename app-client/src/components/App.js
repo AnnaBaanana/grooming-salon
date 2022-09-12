@@ -13,7 +13,11 @@ function App() {
     on_date: '',
     at_time: '',
     pet_name: '',
-    owner_name: ''
+    pet_type: '',
+    breed: '',
+    owner_first_name: '',
+    owner_last_name: '',
+    owner_phone: ''
 }
   const [formData, setFormData] = useState(defaultForm);
   const [editForm, setEditForm] = useState(null);
@@ -31,10 +35,13 @@ function App() {
 
   useEffect(() => {
     fetch("http://localhost:9292/appointments").then(res => res.json()).
-    then(data => setAppointments(data))
+    then(data => {
+      console.log(data)
+      setAppointments(data)})
   },[]);
 
   function handleFormSubmit(formData) {
+    console.log('this is json after patch' , formData)
     const newAppointments = [...appointments, formData]
     setAppointments(newAppointments)
     setFormData(defaultForm)
@@ -45,14 +52,18 @@ function App() {
     setAppointments(afterDeleteAppointments)
   }
 
-  function editAppointment(data) {
-    console.log('I am being edited', data)
+  function editAppointment(data) { 
+    console.log(data)  
     setEditForm(data.id)
     setFormData({
       on_date: data.on_date,
       at_time: data.at_time,
-      pet_name: data.pet_name,
-      owner_name: data.owner_name
+      pet_name: data.pet.name,
+      type: data.pet.pet_type,
+      breed: data.pet.breed,
+      owner_first_name: data.owner_first_name,
+      owner_last_name: data.owner_last_name,
+      phone: data.owner_phone
   })
   }
 
