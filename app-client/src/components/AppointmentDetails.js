@@ -43,6 +43,7 @@ function AppointmentDetails({editForm, formData, handleFormDataChange, handleFor
                 placeholder='time'
                 onChange={e => handleFormDataChange(e)} 
             />
+            <br></br>
             <input 
                 type='text' 
                 name='pet_name' 
@@ -51,14 +52,50 @@ function AppointmentDetails({editForm, formData, handleFormDataChange, handleFor
                 placeholder='pet name'
                 onChange={e => handleFormDataChange(e)}  
             />
+            <select
+                name='pet_type' 
+                id='pet_type' 
+                value={formData.pet_type} 
+                placeholder='pet type'
+                onChange={e => handleFormDataChange(e)}>
+                    <option value="">Select Type</option>
+                    <option value="dog">Dog</option>
+                    <option value="cat">Cat</option>
+            </select>
             <input 
                 type='text' 
-                name='owner_name' 
-                id='owner_name' 
-                value={formData.owner_name} 
-                placeholder='owner name'
+                name='breed' 
+                id='breed' 
+                value={formData.breed} 
+                placeholder='pet breed'
+                onChange={e => handleFormDataChange(e)}  
+            />
+            <br></br>
+            <input 
+                type='text' 
+                name='owner_first_name' 
+                id='owner_first_name' 
+                value={formData.owner_first_name} 
+                placeholder='owner first name'
                 onChange={e => handleFormDataChange(e)} 
             />
+            <input 
+                type='text' 
+                name='owner_last_name' 
+                id='owner_last_name' 
+                value={formData.owner_last_name} 
+                placeholder='owner last name'
+                onChange={e => handleFormDataChange(e)} 
+            />
+            <input 
+                type='text' 
+                name='owner_phone' 
+                id='owner_phone' 
+                value={formData.owner_phone} 
+                placeholder='owner phone'
+                onChange={e => handleFormDataChange(e)} 
+            />
+            <br></br>
             <input 
                 type='submit' 
                 value='Save' 
