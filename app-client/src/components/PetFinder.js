@@ -1,4 +1,4 @@
-function PetFinder({findName, searchByName}) {
+function PetFinder({findName, searchByName, findPhone, searchByPhone}) {
     
 
     return(
@@ -11,7 +11,13 @@ function PetFinder({findName, searchByName}) {
                     placeholder='search by name' 
                     value={findName}
                     onChange={e => searchByName(e.target.value)}/>
-                <input type='text' name='phone_search'placeholder='search by phone'/>
+                <input 
+                    type='text' 
+                    name='phone_search'
+                    placeholder='search by phone'
+                    value={findPhone}
+                    onChange={e => searchByPhone(e.target.value)}
+                    />
             </form>
         </div>
 

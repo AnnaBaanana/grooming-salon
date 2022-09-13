@@ -5,10 +5,16 @@ import PetFinder from './PetFinder';
 function PetList({pets, createAppointment}) {
 
     const [findName, setFindName] = useState('ory');
+    const [findPhone, setFindPhone] = useState('2112')
 
     function searchByName(name) {
         console.log('searching for', name)
         setFindName(name)
+    }
+
+    function searchByPhone(phone) {
+        console.log('searching for', phone)
+        setFindPhone(phone)
     }
 
     console.log('from PetList', findName)
@@ -19,7 +25,7 @@ function PetList({pets, createAppointment}) {
 
     return (
         <div>
-            <PetFinder findName={findName} searchByName={searchByName}/>
+            <PetFinder findName={findName} searchByName={searchByName} findPhone={findPhone} searchByPhone={searchByPhone} />
             <div className='list'>
                 <ul>
                     {filteredPets.map((pet) => (
