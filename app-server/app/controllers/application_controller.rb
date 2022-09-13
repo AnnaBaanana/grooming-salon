@@ -9,7 +9,7 @@ class ApplicationController < Sinatra::Base
 
   get "/appointments" do
     appointments = Appointment.all.order(:on_date)
-    appointments.to_json(only: [:id, :on_date, :at_time], include: {pet: { only: [:name, :pet_type, :breed] }})
+    appointments.to_json(only: [:id, :on_date, :at_time, :price], include: {pet: {include: :owners}} )
   end
 
   #need to add other data points
@@ -17,13 +17,14 @@ class ApplicationController < Sinatra::Base
     #binding.pry
     appointment = Appointment.create(
       on_date: params[:on_date],
-      at_time: params[:at_time]
+      at_time: params[:at_time],
+      price: params[:price]
     )
     pet = Pet.create(name: params[:pet_name], breed: params[:breed], pet_type: params[:pet_type])
     owner = Owner.create(first_name: params[:owner_first_name], last_name: params[:owner_last_name], phone: params[:owner_phone])
     pet.appointments << appointment
     owner.appointments << appointment
-    appointment.to_json(only: [:id, :on_date, :at_time], include: {pet: { only: [:name, :pet_type, :breed] }})
+    appointment.to_json(only: [:id, :on_date, :at_time, :price], include: {pet: {include: :owners}} )
   end
 
   #need to add other data points
@@ -32,13 +33,14 @@ class ApplicationController < Sinatra::Base
     appointment = Appointment.find(params[:id])
     appointment.update(
       on_date: params[:on_date],
-      at_time: params[:at_time]
+      at_time: params[:at_time],
+      price: params[:price]
     )
     pet = Pet.find(appointment.pet_id)
     pet.update(name: params[:pet_name], breed: params[:breed], pet_type: params[:pet_type])
     owner = Owner.find(appointment.owner_id)
     owner.update(first_name: params[:owner_first_name], last_name: params[:owner_last_name], phone: params[:owner_phone])
-    appointment.to_json(only: [:id, :on_date, :at_time], include: {pet: { only: [:name, :pet_type, :breed] }})
+    appointment.to_json(only: [:id, :on_date, :at_time, :price], include: {pet: {include: :owners}} )
   end
 
   #working well
