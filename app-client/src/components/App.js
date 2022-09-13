@@ -25,7 +25,7 @@ function App() {
 
   function handleFormDataChange(e) {
     const newFormData = {...formData, [e.target.name]: e.target.value}
-    console.log(newFormData)
+    //console.log(newFormData)
     setFormData(newFormData)
   }
 
@@ -37,12 +37,12 @@ function App() {
   useEffect(() => {
     fetch("http://localhost:9292/appointments").then(res => res.json()).
     then(data => {
-      console.log(data)
+      //console.log(data)
       setAppointments(data)})
   },[]);
 
   function handleFormSubmit(formData) {
-    console.log('this is json after patch' , formData)
+    //console.log('this is json after patch' , formData)
     const newAppointments = [...appointments, formData]
     setAppointments(newAppointments)
     setFormData(defaultForm)
@@ -54,7 +54,7 @@ function App() {
   }
 
   function editAppointment(data) { 
-    console.log(data)  
+    //console.log(data)  
     setEditForm(data.id)
     setFormData({
       on_date: data.on_date,
@@ -62,10 +62,22 @@ function App() {
       pet_name: data.pet.name,
       pet_type: data.pet.pet_type,
       breed: data.pet.breed,
-      breed: data.price,
+      price: data.price,
       owner_first_name: data.owner_first_name,
       owner_last_name: data.owner_last_name,
       phone: data.owner_phone
+  })
+  }
+
+  function createAppointment(pet) {
+    console.log("need appointment for this pet", pet)
+    setFormData({
+      pet_name: pet.name,
+      pet_type: pet.pet_type,
+      breed: pet.breed,
+      owner_first_name: pet.owners[0].first_name,
+      owner_last_name: pet.owners[0].last_name,
+      phone: pet.owners[0].phone
   })
   }
 
@@ -74,13 +86,13 @@ function App() {
       <NavBar />
       <h1>Pet Mama Grooming Salon</h1>
       <br></br>
-      <button>New Appointment</button>
+      <h3>New Appointment</h3>
       <AppointmentDetails editForm={editForm} formData={formData} handleFormDataChange={handleFormDataChange} handleFormSubmit={handleFormSubmit} />
       <h3>Upcoming Appointments</h3>
       <AppointmentList appointments={appointments} deleteAppointment={deleteAppointment} editAppointment={editAppointment}/>
       <br></br>
       <h3>Pets</h3>
-      <PetList pets={pets}/>
+      <PetList pets={pets} createAppointment={createAppointment}/>
     </div>
   );
 }

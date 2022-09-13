@@ -1,7 +1,7 @@
 import React from 'react';
 import Pet from './Pet';
 
-function PetList({pets}) {
+function PetList({pets, createAppointment}) {
     return (
         <div className='list'>
             <ul>
@@ -9,6 +9,7 @@ function PetList({pets}) {
                     <Pet 
                     key={pet.id}
                     pet={pet}
+                    createAppointment={createAppointment}
                     />
                 ))}
             </ul>

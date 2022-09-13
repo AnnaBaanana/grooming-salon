@@ -4,7 +4,7 @@ function AppointmentList({appointments, deleteAppointment, editAppointment}) {
 
     return(
         <table>
-            <tr>
+            <thead>
                 <th> Date</th>
                 <th> Time</th>
                 <th> Pet Name</th>
@@ -12,8 +12,8 @@ function AppointmentList({appointments, deleteAppointment, editAppointment}) {
                 <th> Phone</th>
                 <th> Edit </th>
                 <th> Delete </th>
-
-            </tr>
+            </thead>
+            <tbody>
                 {appointments.map(appointment => (
                     <Appointment
                         key={appointment.id} appointment={appointment}
@@ -21,6 +21,7 @@ function AppointmentList({appointments, deleteAppointment, editAppointment}) {
                         editAppointment={editAppointment}
                     />
                 ))}
+            </tbody>
         </table>
     )
 }

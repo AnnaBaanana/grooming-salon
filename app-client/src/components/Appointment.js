@@ -1,5 +1,5 @@
 function Appointment({appointment, deleteAppointment, editAppointment}) {
-    console.log(appointment)
+    //console.log(appointment)
 
     function handleEdit() {
         editAppointment(appointment)
