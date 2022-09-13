@@ -15,6 +15,7 @@ function App() {
     pet_name: '',
     pet_type: '',
     breed: '',
+    price: '',
     owner_first_name: '',
     owner_last_name: '',
     owner_phone: ''
@@ -61,6 +62,7 @@ function App() {
       pet_name: data.pet.name,
       pet_type: data.pet.pet_type,
       breed: data.pet.breed,
+      breed: data.price,
       owner_first_name: data.owner_first_name,
       owner_last_name: data.owner_last_name,
       phone: data.owner_phone

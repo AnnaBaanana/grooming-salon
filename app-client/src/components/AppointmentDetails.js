@@ -70,6 +70,14 @@ function AppointmentDetails({editForm, formData, handleFormDataChange, handleFor
                 placeholder='pet breed'
                 onChange={e => handleFormDataChange(e)}
             /> 
+            <input
+                type='text' 
+                name='price' 
+                id='price' 
+                value={formData.price} 
+                placeholder='price, $'
+                onChange={e => handleFormDataChange(e)}
+            /> 
             <br></br>
             <input 
                 type='text' 
