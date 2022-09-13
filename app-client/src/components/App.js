@@ -42,6 +42,7 @@ function App() {
   },[]);
 
   function handleFormSubmit(formData) {
+    //need to refresh when appointment is edited 
     //console.log('this is json after patch' , formData)
     const newAppointments = [...appointments, formData]
     setAppointments(newAppointments)
@@ -54,7 +55,7 @@ function App() {
   }
 
   function editAppointment(data) { 
-    //console.log(data)  
+    console.log(data)  
     setEditForm(data.id)
     setFormData({
       on_date: data.on_date,
@@ -63,9 +64,9 @@ function App() {
       pet_type: data.pet.pet_type,
       breed: data.pet.breed,
       price: data.price,
-      owner_first_name: data.owner_first_name,
-      owner_last_name: data.owner_last_name,
-      phone: data.owner_phone
+      owner_first_name: data.pet.owners[0].first_name,
+      owner_last_name: data.pet.owners[0].last_name,
+      phone: data.pet.owners[0].phone
   })
   }
 
@@ -83,7 +84,6 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar />
       <h1>Pet Mama Grooming Salon</h1>
       <br></br>
       <h3>New Appointment</h3>
