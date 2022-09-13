@@ -4,7 +4,7 @@ class ApplicationController < Sinatra::Base
   # Add your routes here
   get "/pets" do
     pets = Pet.all.order(:name)
-    pets.to_json
+    pets.to_json({include: :owners})
   end
 
   get "/appointments" do
