@@ -66,7 +66,7 @@ function App() {
       price: data.price,
       owner_first_name: data.pet.owners[0].first_name,
       owner_last_name: data.pet.owners[0].last_name,
-      phone: data.pet.owners[0].phone
+      owner_phone: data.pet.owners[0].phone
   })
   }
 
@@ -78,7 +78,7 @@ function App() {
       breed: pet.breed,
       owner_first_name: pet.owners[0].first_name,
       owner_last_name: pet.owners[0].last_name,
-      phone: pet.owners[0].phone
+      owner_phone: pet.owners[0].phone
   })
   }
 
