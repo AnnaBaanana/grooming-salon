@@ -32,14 +32,14 @@ function App() {
   useEffect(() => {
     fetch("http://localhost:9292/pets").then(res => res.json()).
     then(data => setPets(data))
-  },[]);
+  },[appointments]);
 
   useEffect(() => {
     fetch("http://localhost:9292/appointments").then(res => res.json()).
     then(data => {
       //console.log(data)
       setAppointments(data)})
-  },[]);
+  },[formData]);
 
   function handleFormSubmit(formData) {
     //need to refresh when appointment is edited 
@@ -86,13 +86,20 @@ function App() {
     <div className="App">
       <h1>Pet Mama Grooming Salon</h1>
       <br></br>
+      <section>
       <h3>New Appointment</h3>
       <AppointmentDetails editForm={editForm} formData={formData} handleFormDataChange={handleFormDataChange} handleFormSubmit={handleFormSubmit} />
+      </section>
+      <br></br>
+      <section>
       <h3>Upcoming Appointments</h3>
       <AppointmentList appointments={appointments} deleteAppointment={deleteAppointment} editAppointment={editAppointment}/>
+      </section>
       <br></br>
+      <section>
       <h3>Pets</h3>
-      <PetList pets={pets} createAppointment={createAppointment}/>
+      <PetList pets={pets} createAppointment={createAppointment} />
+      </section>
     </div>
   );
 }
