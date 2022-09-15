@@ -1,9 +1,16 @@
 
 function AppointmentDetails({editForm, formData, handleFormDataChange, handleFormSubmit}) {
 
+    const todaysDate = new Date()
+    
+    console.log(Date.parse(todaysDate)<Date.parse(formData.on_date))
+
+
+
     function handleSubmit(e) {
         e.preventDefault()
-        if (formData.on_date !== null && formData.at_time !== null ) {
+        if (formData.on_date.length!==0 && formData.at_time.length!==0 && 
+            formData.pet_name.length!==0 && formData.owner_phone.length!==0) {
             if (editForm>0) {
                 //if editForm is not NULL -- form is being edited -- do patch
                 fetch(`http://localhost:9292/appointments/${editForm}`, {
@@ -21,28 +28,40 @@ function AppointmentDetails({editForm, formData, handleFormDataChange, handleFor
             }
             }
         else {
-            alert("Appointment Date and Time cannot be blank")
+            alert("Appointment Date, Time, Pet Name or Phone cannot be blank")
         }
     }
 
     return(
         <form onSubmit={handleSubmit}>
+            <strong>Appointment Date and Time</strong>
+            <br></br>
             <input 
-                type='text' 
+                type='date' 
                 name='on_date' 
                 id='on_date' 
                 value={formData.on_date} 
                 placeholder='date'
                 onChange={e => handleFormDataChange(e)}
             />
-            <input 
-                type='text' 
+            <select
                 name='at_time' 
                 id='at_time' 
                 value={formData.at_time} 
                 placeholder='time'
-                onChange={e => handleFormDataChange(e)} 
-            />
+                onChange={e => handleFormDataChange(e)}>
+                    <option value='000'>select time</option>
+                    <option value='900'>9:00 AM</option>
+                    <option value='930'>9:30 AM</option>
+                    <option value='1000'>10:00 AM</option>
+                    <option value='1030'>10:30 AM</option>
+                    <option value='1100'>11:00 AM</option>
+                    <option value='1130'>11:30 AM</option>
+                    <option value='1200'>12:00 PM</option>
+                    <option value='12300'>12:30 PM</option>
+            </select> 
+            <br></br>
+            <strong>Pet Information</strong>
             <br></br>
             <input 
                 type='text' 
@@ -60,6 +79,16 @@ function AppointmentDetails({editForm, formData, handleFormDataChange, handleFor
                 placeholder='pet breed'
                 onChange={e => handleFormDataChange(e)}
             /> 
+             <select
+                name='pet_type' 
+                id='pet_type' 
+                value={formData.pet_type} 
+                placeholder='cat or dog'
+                onChange={e => handleFormDataChange(e)}>
+                    <option value='select'>select pet type</option>
+                    <option value='cat'>cat</option>
+                    <option value='dog'>dog</option>
+            </select>
             <input
                 type='text' 
                 name='price' 
@@ -68,16 +97,8 @@ function AppointmentDetails({editForm, formData, handleFormDataChange, handleFor
                 placeholder='price, $'
                 onChange={e => handleFormDataChange(e)}
             /> 
-            <select
-                name='pet_type' 
-                id='pet_type' 
-                value={formData.pet_type} 
-                placeholder='cat or dog'
-                onChange={e => handleFormDataChange(e)}>
-                    <option value='select'>select</option>
-                    <option value='cat'>cat</option>
-                    <option value='dog'>dog</option>
-            </select>
+            <br></br>
+            <strong>Owner Information</strong>
             <br></br>
             <input 
                 type='text' 
