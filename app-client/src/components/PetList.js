@@ -5,7 +5,7 @@ import PetFinder from './PetFinder';
 function PetList({pets, createAppointment}) {
 
     const [findName, setFindName] = useState('');
-    const [findPhone, setFindPhone] = useState('2112')
+    const [findPhone, setFindPhone] = useState('')
 
     function searchByName(name) {
         setFindName(name)
@@ -17,7 +17,6 @@ function PetList({pets, createAppointment}) {
 
 
     const filteredPets = pets.filter(pet => pet.name!==null).filter(pet => pet.name.toLowerCase().includes(findName.toLowerCase()))
-
 
     return (
         <div>

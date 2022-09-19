@@ -11,13 +11,6 @@ function PetFinder({findName, searchByName, findPhone, searchByPhone}) {
                     placeholder='search by name' 
                     value={findName}
                     onChange={e => searchByName(e.target.value)}/>
-                <input 
-                    type='text' 
-                    name='phone_search'
-                    placeholder='search by phone'
-                    value={findPhone}
-                    onChange={e => searchByPhone(e.target.value)}
-                    />
             </form>
         </div>
 

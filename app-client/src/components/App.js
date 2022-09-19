@@ -22,10 +22,10 @@ function App() {
 }
   const [formData, setFormData] = useState(defaultForm);
   const [editForm, setEditForm] = useState(null);
+  const [pastAppointments, setPastAppointments] = useState(false);
 
   function handleFormDataChange(e) {
     const newFormData = {...formData, [e.target.name]: e.target.value}
-    //console.log(newFormData)
     setFormData(newFormData)
   }
 
@@ -37,13 +37,10 @@ function App() {
   useEffect(() => {
     fetch("http://localhost:9292/appointments").then(res => res.json()).
     then(data => {
-      //console.log(data)
       setAppointments(data)})
   },[formData]);
 
   function handleFormSubmit(formData) {
-    //need to refresh when appointment is edited 
-    //console.log('this is json after patch' , formData)
     const newAppointments = [...appointments, formData]
     setAppointments(newAppointments)
     setFormData(defaultForm)
@@ -92,8 +89,13 @@ function App() {
       </section>
       <br></br>
       <section>
-      <h3>Upcoming Appointments</h3>
-      <AppointmentList appointments={appointments} deleteAppointment={deleteAppointment} editAppointment={editAppointment}/>
+      <h3>{pastAppointments? "Past Appointments" : "Upcoming Appointments"}</h3>
+      <AppointmentList 
+        pastAppointments={pastAppointments}
+        setPastAppointments={setPastAppointments}
+        appointments={appointments} 
+        deleteAppointment={deleteAppointment} 
+        editAppointment={editAppointment}/>
       </section>
       <br></br>
       <section>
